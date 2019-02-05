@@ -9,6 +9,11 @@ RUN apt-get update && apt-get install -y wget libicu-dev libjpeg-dev libpng-dev 
     docker-php-ext-install pdo pdo_mysql gd intl && \
     a2enmod rewrite
 
+RUN apt-get update && apt-get install -y gnupg
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get update && apt-get install -y nodejs
+RUN ln -s /usr/bin/node /usr/local/bin/node
+
 RUN wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb
 RUN dpkg -i wkhtmltox_0.12.5-1.stretch_amd64.deb; exit 0
 RUN apt-get update && apt-get install -f -y
